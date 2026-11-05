@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090914">
+<title>One Secret, One Special Day</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 15%,#302044 0%,#151326 42%,#080811 100%);color:#fff4f6;font-family:Georgia,serif;overflow-x:hidden}
+#sky{position:fixed;inset:0;pointer-events:none;overflow:hidden}.star{position:absolute;background:#fff;border-radius:50%;opacity:.7;animation:blink 3s infinite alternate}@keyframes blink{to{opacity:.15;transform:scale(.6)}}
+main{position:relative;z-index:1;max-width:680px;min-height:100vh;margin:auto;padding:34px 22px 55px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.eyebrow{font:10px Arial,sans-serif;letter-spacing:5px;color:#d7b9d2;text-transform:uppercase}
+h1{font-weight:normal;font-size:clamp(38px,10vw,67px);line-height:1.06;margin:20px 0 10px}h1 em{color:#e9a9c3}.muted{font:11px Arial,sans-serif;letter-spacing:3px;color:#c7aec6}
+.line{height:1px;width:75px;background:linear-gradient(90deg,transparent,#d9b37b,transparent);margin:26px auto}
+.copy{font-size:17px;line-height:1.8;color:#e9dce9;max-width:440px}
+.panel{width:100%;max-width:510px;margin:22px auto 0;padding:27px 22px;border:1px solid #ffffff25;border-radius:18px;background:linear-gradient(145deg,#ffffff0d,#ffffff04);box-shadow:0 18px 60px #0005;backdrop-filter:blur(8px)}
+button{font:11px Arial,sans-serif;letter-spacing:2px;color:#fff2f7;background:linear-gradient(120deg,#87476f,#55375f);border:1px solid #e8b5cc88;padding:14px 24px;border-radius:30px;cursor:pointer;box-shadow:0 8px 25px #0005;margin-top:20px}
+button:active{transform:scale(.98)}button:disabled{opacity:.55}
+.hidden{display:none!important}.symbol{font-size:45px;margin:10px}.hint{font:10px Arial,sans-serif;letter-spacing:2px;color:#cbb4c8;margin-top:16px}
+input{width:100%;padding:13px;border-radius:10px;border:1px solid #ffffff44;background:#100e1c;color:white;text-align:center;font:16px Georgia;outline:none}
+.note{font-size:15px;line-height:1.85;color:#4f3045;text-align:left;background:linear-gradient(145deg,#fff9f0,#f7e4ee);border-radius:16px;padding:27px 23px;box-shadow:0 20px 60px #0006}
+.note h2{text-align:center;color:#a14c75;font-size:32px;font-weight:normal;margin:10px 0 23px}.note .small{text-align:center;font:10px Arial,sans-serif;letter-spacing:3px;color:#a56b87}
+.note p{margin:13px 0}.sign{text-align:right;color:#a14c75;font-style:italic;margin-top:24px!important}
+.bigdate{font-size:13px;letter-spacing:5px;color:#e9bfd0;margin:10px 0 5px}
+.footer{font:9px Arial,sans-serif;letter-spacing:3px;color:#987f9d;margin-top:38px}
+#final{animation:appear 1.2s ease both}@keyframes appear{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:5}
+</style>
+</head>
+<body><div id="sky"></div><canvas id="confetti"></canvas>
+<main>
+<section id="intro">
+ <div class="eyebrow">a message from the universe</div>
+ <h1>Someone has<br><em>a secret for you.</em></h1>
+ <div class="muted">THIS LITTLE SURPRISE IS NOT AN ACCIDENT</div>
+ <div class="line"></div>
+ <p class="copy">Before you leave…<br>there is one little mystery waiting to be opened.<br>Are you curious enough? ✦</p>
+ <button id="begin">UNLOCK THE MYSTERY</button>
+ <div class="hint">NO CLUES. JUST A LITTLE MAGIC.</div>
+</section>
+<section id="step2" class="panel hidden">
+ <div class="symbol">✧</div><div class="eyebrow">chapter one · a tiny clue</div>
+ <h1 style="font-size:38px">Not every special thing<br>makes a sound.</h1>
+ <p class="copy">Some wishes travel quietly, from one heart to another. Today, one of them has found its way to you.</p>
+ <button id="next">I'M LISTENING</button>
+</section>
+<section id="step3" class="panel hidden">
+ <div class="eyebrow">chapter two · the reveal</div>
+ <div class="symbol">🌙</div>
+ <h1 style="font-size:42px">The day is yours,<br><em>Soma.</em></h1>
+ <p class="copy">09 November. A date worth celebrating, because the world became a little more interesting when you arrived.</p>
+ <button id="reveal">OPEN YOUR LETTER ♡</button>
+</section>
+<section id="final" class="hidden" style="width:100%">
+ <div class="eyebrow">a letter meant only for you</div>
+ <div class="bigdate">09 · NOVEMBER</div>
+ <div class="note">
+  <div class="small">A LITTLE SECRET, FINALLY SPOKEN</div>
+  <h2>Happy Birthday, Soma ✨</h2>
+  <p>কিছু মানুষকে আলাদা করে বিশেষ বলার জন্য কোনো কারণ লাগে না। তাদের উপস্থিতিটাই যথেষ্ট।</p>
+  <p>আজ তোমার দিনে আমার একটাই ইচ্ছে—তোমার জীবনে এমন সব সুন্দর মুহূর্ত আসুক, যেগুলো মনে পড়লে অনেক বছর পরেও তোমার মুখে হাসি ফুটবে।</p>
+  <p>তোমার স্বপ্নগুলো সাহস পাক, মনটা শান্তিতে থাকুক, আর জীবনের প্রতিটা নতুন অধ্যায় আগেরটার চেয়ে আরও সুন্দর হয়ে উঠুক।</p>
+  <p>হয়তো এই ছোট্ট surprise-টা তোমাকে একটু অবাক করবে। কিন্তু এটুকু জেনে রেখো—তোমার জন্য এই শুভেচ্ছাটা একদম মন থেকে তৈরি।</p>
+  <p><strong>Some people are impossible to explain… but impossible to forget.</strong></p>
+  <p>তুমি সবসময় নিজের মতো করে উজ্জ্বল থেকো। Happy Birthday! 🌷</p>
+  <p class="sign">— Someone who wishes you well ♡</p>
+ </div>
+ <div class="symbol" style="margin-top:22px">🎂</div>
+ <h1 style="font-size:clamp(32px,8vw,48px)">Keep shining,<br><em>Soma.</em></h1>
+ <p class="copy">The mystery ends here. The good wishes don't. ♡</p>
+ <button id="wish">MAKE A WISH ✨</button>
+</section>
+<div class="footer">A SECRET LITTLE CELEBRATION · MADE WITH ♡</div>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+for(let i=0;i<95;i++){let s=document.createElement('i');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.width=s.style.height=(1+Math.random()*2)+'px';s.style.animationDelay=Math.random()*4+'s';$('sky').appendChild(s)}
+function show(id){$('intro').classList.add('hidden');$('step2').classList.add('hidden');$('step3').classList.add('hidden');$(id).classList.remove('hidden');$(id).scrollIntoView({behavior:'smooth',block:'center'})}
+$('begin').onclick=()=>show('step2');$('next').onclick=()=>show('step3');$('reveal').onclick=()=>{show('final');confetti()};
+function confetti(){let c=$('confetti'),ctx=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;let p=Array.from({length:110},()=>({x:Math.random()*c.width,y:-Math.random()*c.height,v:2+Math.random()*4,r:2+Math.random()*4,a:Math.random()*6.28}));let t=0;function draw(){ctx.clearRect(0,0,c.width,c.height);p.forEach(o=>{o.y+=o.v;o.x+=Math.sin(o.a+=.03);ctx.fillStyle=['#f5b6d0','#e8d39a','#ffffff','#bda5df'][Math.floor(Math.random()*4)];ctx.beginPath();ctx.arc(o.x,o.y,o.r,0,7);ctx.fill()});if(++t<180)requestAnimationFrame(draw);else ctx.clearRect(0,0,c.width,c.height)}draw()}
+$('wish').onclick=()=>{confetti();$('wish').textContent='YOUR WISH IS IN THE STARS ♡';$('wish').disabled=true};
+</script></body></html>
