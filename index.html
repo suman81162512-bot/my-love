@@ -24,24 +24,31 @@ input{width:100%;padding:13px;border-radius:10px;border:1px solid #ffffff44;back
 .footer{font:9px Arial,sans-serif;letter-spacing:3px;color:#987f9d;margin-top:38px}
 #final{animation:appear 1.2s ease both}@keyframes appear{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 #confetti{position:fixed;inset:0;pointer-events:none;z-index:5}
+
+#musicBtn{position:fixed;top:14px;right:14px;z-index:8;margin:0;padding:10px 14px;font-size:9px;background:#21172d;border-color:#d9a9c477}
+.countdown{display:flex;justify-content:center;gap:10px;margin:22px auto 4px;flex-wrap:wrap}.countbox{min-width:66px;padding:10px 8px;border:1px solid #e8b5cc44;border-radius:12px;background:#ffffff09}.countbox strong{display:block;font:22px Georgia;color:#f3c2d6}.countbox span{font:8px Arial,sans-serif;letter-spacing:2px;color:#cbb4c8}
+.moon{font-size:44px;display:inline-block;cursor:pointer;filter:drop-shadow(0 0 14px #e9b7dc);animation:moonfloat 3s ease-in-out infinite}@keyframes moonfloat{50%{transform:translateY(-7px) rotate(7deg);filter:drop-shadow(0 0 22px #f7cce5)}}
+#secretHint{font:11px Arial,sans-serif;letter-spacing:1px;color:#e9b7d0;min-height:18px;margin-top:12px}.cake-wrap{margin:22px auto 6px;max-width:220px}.cake{font-size:82px;filter:drop-shadow(0 0 22px #ffb8d7);animation:cakeglow 2s infinite alternate}@keyframes cakeglow{to{filter:drop-shadow(0 0 28px #ffe3a8);transform:translateY(-3px)}}#candleMsg{font:11px Arial,sans-serif;letter-spacing:2px;color:#eac4d7;min-height:18px}
+@media(max-width:420px){main{padding-top:68px}.panel{padding:22px 16px}.copy{font-size:15px}}
 </style>
 </head>
-<body><div id="sky"></div><canvas id="confetti"></canvas>
+<body><button id="musicBtn">♫ PLAY MUSIC</button><div id="sky"></div><canvas id="confetti"></canvas>
 <main>
 <section id="intro">
  <div class="eyebrow">a message from the universe</div>
  <h1>Someone has<br><em>a secret for you.</em></h1>
  <div class="muted">THIS LITTLE SURPRISE IS NOT AN ACCIDENT</div>
  <div class="line"></div>
+ <div class="eyebrow">until your special day</div><div class="countdown"><div class="countbox"><strong id="days">--</strong><span>DAYS</span></div><div class="countbox"><strong id="hours">--</strong><span>HOURS</span></div><div class="countbox"><strong id="mins">--</strong><span>MINUTES</span></div><div class="countbox"><strong id="secs">--</strong><span>SECONDS</span></div></div>
  <p class="copy">Before you leave…<br>there is one little mystery waiting to be opened.<br>Are you curious enough? ✦</p>
  <button id="begin">UNLOCK THE MYSTERY</button>
  <div class="hint">NO CLUES. JUST A LITTLE MAGIC.</div>
 </section>
 <section id="step2" class="panel hidden">
- <div class="symbol">✧</div><div class="eyebrow">chapter one · a tiny clue</div>
+ <div class="moon" id="moon">☾</div><div class="eyebrow">chapter one · a tiny clue</div>
  <h1 style="font-size:38px">Not every special thing<br>makes a sound.</h1>
  <p class="copy">Some wishes travel quietly, from one heart to another. Today, one of them has found its way to you.</p>
- <button id="next">I'M LISTENING</button>
+ <div id="secretHint">A little secret is hiding in the moon… tap it 3 times.</div><button id="next" disabled style="opacity:.35">UNLOCK THE NEXT CLUE</button>
 </section>
 <section id="step3" class="panel hidden">
  <div class="eyebrow">chapter two · the reveal</div>
@@ -64,7 +71,7 @@ input{width:100%;padding:13px;border-radius:10px;border:1px solid #ffffff44;back
   <p>তুমি সবসময় নিজের মতো করে উজ্জ্বল থেকো। Happy Birthday! 🌷</p>
   <p class="sign">— Someone who wishes you well ♡</p>
  </div>
- <div class="symbol" style="margin-top:22px">🎂</div>
+ <div class="cake-wrap"><div class="cake" id="cake">🎂</div><div id="candleMsg">ONE LITTLE WISH IS WAITING…</div><button id="blow">BLOW THE CANDLE ✨</button></div>
  <h1 style="font-size:clamp(32px,8vw,48px)">Keep shining,<br><em>My Love.</em></h1>
  <p class="copy">The mystery ends here. The good wishes don't. ♡</p>
  <button id="wish">MAKE A WISH ✨</button>
@@ -76,6 +83,15 @@ const $=id=>document.getElementById(id);
 for(let i=0;i<95;i++){let s=document.createElement('i');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.width=s.style.height=(1+Math.random()*2)+'px';s.style.animationDelay=Math.random()*4+'s';$('sky').appendChild(s)}
 function show(id){$('intro').classList.add('hidden');$('step2').classList.add('hidden');$('step3').classList.add('hidden');$(id).classList.remove('hidden');$(id).scrollIntoView({behavior:'smooth',block:'center'})}
 $('begin').onclick=()=>show('step2');$('next').onclick=()=>show('step3');$('reveal').onclick=()=>{show('final');confetti()};
+let moonTaps=0;$('moon').onclick=()=>{moonTaps++;$('secretHint').textContent=moonTaps<3?'The moon is waking up… '+(3-moonTaps)+' more tap(s) ✨':'You found the hidden starlight. The next secret is yours ♡';if(moonTaps>=3){$('next').disabled=false;$('next').style.opacity='1';$('moon').textContent='☽'}};
+function updateCountdown(){let now=new Date(),year=now.getFullYear(),target=new Date(year,10,9,0,0,0);if(now>target)target=new Date(year+1,10,9,0,0,0);let d=Math.max(0,target-now);$('days').textContent=Math.floor(d/86400000);$('hours').textContent=Math.floor(d%86400000/3600000);$('mins').textContent=Math.floor(d%3600000/60000);$('secs').textContent=Math.floor(d%60000/1000)}updateCountdown();setInterval(updateCountdown,1000);
 function confetti(){let c=$('confetti'),ctx=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;let p=Array.from({length:110},()=>({x:Math.random()*c.width,y:-Math.random()*c.height,v:2+Math.random()*4,r:2+Math.random()*4,a:Math.random()*6.28}));let t=0;function draw(){ctx.clearRect(0,0,c.width,c.height);p.forEach(o=>{o.y+=o.v;o.x+=Math.sin(o.a+=.03);ctx.fillStyle=['#f5b6d0','#e8d39a','#ffffff','#bda5df'][Math.floor(Math.random()*4)];ctx.beginPath();ctx.arc(o.x,o.y,o.r,0,7);ctx.fill()});if(++t<180)requestAnimationFrame(draw);else ctx.clearRect(0,0,c.width,c.height)}draw()}
+
+let audioCtx=null,musicBusy=false;
+const melody=[['G4',.34],['G4',.18],['A4',.52],['G4',.52],['C5',.52],['B4',.9],['G4',.34],['G4',.18],['A4',.52],['G4',.52],['D5',.52],['C5',.9],['G4',.34],['G4',.18],['G5',.52],['E5',.52],['C5',.52],['B4',.52],['A4',.9],['F5',.34],['F5',.18],['E5',.52],['C5',.52],['D5',.52],['C5',1.1]];
+const hz={C5:523.25,D5:587.33,E5:659.25,F5:698.46,G4:392,A4:440,B4:493.88,G5:783.99};
+$('musicBtn').onclick=()=>{if(musicBusy)return;audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)();audioCtx.resume();let t=audioCtx.currentTime+.05;melody.forEach(([n,d])=>{let o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type='sine';o.frequency.value=hz[n];g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.12,t+.025);g.gain.exponentialRampToValueAtTime(.0001,t+d*.88);o.connect(g);g.connect(audioCtx.destination);o.start(t);o.stop(t+d);t+=d+.055});musicBusy=true;$('musicBtn').textContent='♫ PLAYING…';setTimeout(()=>{musicBusy=false;$('musicBtn').textContent='♫ PLAY AGAIN'},(t-audioCtx.currentTime)*1000)};
+
 $('wish').onclick=()=>{confetti();$('wish').textContent='YOUR WISH IS IN THE STARS ♡';$('wish').disabled=true};
+$('blow').onclick=()=>{$('cake').textContent='✨';$('candleMsg').textContent='WISH SENT INTO THE UNIVERSE ♡';$('blow').textContent='WISH GRANTED';$('blow').disabled=true;confetti()};
 </script></body></html>
